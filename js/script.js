@@ -43,10 +43,13 @@ var quotes = [
     tags: ["Hope", "Politics"]
   }
   ];
-  { console.log(quotes);
+  
+  //This gets the paragraph tag from the html doc
+
   const quote = document.querySelector(".quote");
-  quote.innerHTML = quotes[0].quote;
-}
+  
+
+
 /***
   Create the `getRandomQuote` function to:
    - Create a variable to store a random number 
@@ -57,7 +60,7 @@ var quotes = [
 function getRandomQuote () {
   var randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes [randomNumber];
-
+}
 
 
 /***
@@ -72,9 +75,32 @@ function getRandomQuote () {
    - Don't forget to close that final `p` tag.
    - Set the `innerHTML` of the `quote-box` div to the HTML string. 
 ***/
+// Function to render generated html to the dom
+const printQuote = () => {
+  let randQuote = getRandomQuote();
 
 
+  // Generate quotation html
+  let html = `<p class="quote"> ${randQuote.quote} </p>
+              <p class="source"> ${randQuote.source}`
 
+  if (randQuote.citation) {
+    html += `<span class="citation">, ${randQuote.citation}</span>`
+  }
+
+  if (randQuote.year) {
+    html += `<span class="year">, ${randQuote.year}</span>`
+  }
+
+  if (randQuote.tag) {
+    html += `<span>, ${randQuote.tag}</span>`
+  }
+
+  html += `</p>`
+
+
+  // Populate the root div with generated quote text
+  rootDiv.innerHTML = html;
 
 /***
   When the "Show another quote" button is clicked, the event listener 
