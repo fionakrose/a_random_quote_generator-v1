@@ -1,19 +1,9 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+// These are my quotes put into an array //
 
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-  Add the `citation` property to at least one object in the array.
-  Add the `year` property to at least one object in the array.
-  Use console.log() to log your array of quotes to the console.
-***/
+
+
 var quotes = [
   {
     quote: "Don't cry because it's over smile because it happened." 
@@ -61,53 +51,64 @@ function getRandomQuote () {
   var randomNumber = Math.floor(Math.random() * quotes.length);
   return quotes [randomNumber];
 }
+//Online color codes//
 
+
+let colors = [" #DC8FE5 ", " #F57B8F ", " #7B95FF ", " #F7AED4 ", " #B3DFB5 "];
+
+// Function to randomly choose colors 
+
+function getRandomColor () {
+  var randomNumber = Math.floor(Math.random() * quotes.length);
+  return colors [randomNumber];
+
+}
+
+//Function that will change quotes every 10 seconds //
+let timer;
+
+function quoteTimer() {
+  clearInterval(timer);
+  timer = window.setInterval(printQuote, 15000);
+}
+
+function randomBackgroundColor() {
+  let newBackground = randomColor();
+
+  // Function to disply new quote when button is pressed //
+
+  function printWuote () {
+let html = "";
+let RandomQuote = getrandomQuote();
+
+// Function to get random colors and set the timer for quotes 
+
+randomBackgroundColor();
+  quoteTimer();
+  html += '<p class="quote">' + randomQuote.quote + "</p>";
+  html += '<p class="source">' + randomQuote.source;
+  if (randomQuote.citation) {
+    html += '<span class="citation">' + randomQuote.citation + "</span>";
+  }
+  if (randomQuote.year) {
+    html += '<span class="year">' + randomQuote.year + "</span>";
+  }
+  html += "</p>";
+
+ // Code for quote box 
+{
+  let quoteDiv = document.getElementById("quote-box");
+  quoteDiv.innerHTML = html;
+  return quoteDiv;
+  }
+
+// Code //
 
 /***
-  Create the `printQuote` function to: 
-   - Call the `getRandomQuote` function and assign it to a variable.
-   - Create a variable for the HTML string and set it equal to an empty string.
-   - Use the HTML template in the instructions or the markup in the index.html file, AND 
-     the random quote vairable to build your HTML string.
-   - Add the quote and source section to the HTML string.
-   - Use an if statement to check for the citation property before adding it to the HTML string.
-   - Use an if statement to check for the year property before adding it to the HTML string.
-   - Don't forget to close that final `p` tag.
-   - Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
-// Function to render generated html to the dom
-const printQuote = () => {
-  let randQuote = getRandomQuote();
-
-
-  // Generate quotation html
-  let html = `<p class="quote"> ${randQuote.quote} </p>
-              <p class="source"> ${randQuote.source}`
-
-  if (randQuote.citation) {
-    html += `<span class="citation">, ${randQuote.citation}</span>`
-  }
-
-  if (randQuote.year) {
-    html += `<span class="year">, ${randQuote.year}</span>`
-  }
-
-  if (randQuote.tag) {
-    html += `<span>, ${randQuote.tag}</span>`
-  }
-
-  html += `</p>`
-
-
-  // Populate the root div with generated quote text
-  rootDiv.innerHTML = html;
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
+ Do not make any changes to the line of code below this
   comment.
 ***/
 
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-}
+document
+  .getElementById("loadQuote")
+  .addEventListener("click", printQuote, false);
