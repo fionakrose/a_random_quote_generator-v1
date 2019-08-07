@@ -6,9 +6,12 @@
 
 var quotes = [
   {
-    quote: "Don't cry because it's over smile because it happened." 
-    , source: "Dr Seuss",
+    quote: "Don't cry because it's over smile because it happened." ,
+    source: "Dr Seuss",
+    year: "1980" ,
     tags: ["Grit", "Determination", "Success"]
+
+
   },
   {
     quote: "You miss 100% of the shots you don't take.",
@@ -33,76 +36,109 @@ var quotes = [
     tags: ["Hope", "Politics"]
   }
   ];
+
+
+  // Console log 
+
+
+  console.log(quotes);
+
+
+// Create function getRandomQuote
+
+  function getRandomQuote() {
   
+    let randomNumber = Math.floor(Math.random() * quotes.length);
+    // return the object in quotes at position randomNumber
+    return quotes[randomNumber];
+  }
+    
+  
+// Print quote functions & if statements
+
+  console.log(getRandomQuote());
+
+
+  function printQuote() {
+          let randomQuote = getRandomQuote();
+         let htmlQuote = '';
+    htmlQuote = htmlQuote + '<p class="quote">' + randomQuote.quote + "</p>";
+    htmlQuote = htmlQuote + '<p class="source">' + randomQuote.source;
+
+    // If statement that checks for existince of a citation tag
+    if (randomQuote.citation) {
+      htmlQuote = htmlQuote + '<span class="citation">' + randomQuote.citation + "</span>";
+    }
+
+    // If statemenmt that checks for existence of year tag 
+    if (randomQuote.year) {
+      htmlQuote = htmlQuote + '<span class="year">' + randomQuote.year + "</span>";
+    }
+    //close source p tag
+	htmlQuote = htmlQuote + '</p>'
+    }
+
+  // Another if statement that checks for existence of tags
+	if (randomQuote.hasTags) {
+		htmlQuote = htmlQuote + '<p class="tags">Tags: ' + randomQuote.tags + '</p>';
+	}
+
+	htmlQuote = htmlQuote + '<p class="medium">From a ' + randomQuote.medium + '</p>';
+
+  document.getElementById("quote-box").innerHTML = htmlQuote;
+  
+
+// Print Quote function //
+
+function printQuote() {
+  let html = "";
+  let RandomQuote = getrandomQuote();
+
   //This gets the paragraph tag from the html doc
 
   const quote = document.querySelector(".quote");
   
 
+//Randomlygenerated color codes - Color codes will be randomly generated 0-15
 
-/***
-  Create the `getRandomQuote` function to:
-   - Create a variable to store a random number 
-   - Cse the random number to `return` a random quote object from the `quotes` array.
-***/
-// This function will randomly show a quote
+let colorCode = '#';
 
-function getRandomQuote () {
-  var randomNumber = Math.floor(Math.random() * quotes.length);
-  return quotes [randomNumber];
-}
-//Online color codes//
+let randomNumber = Math.floor(Math.random() * 16);
 
+	colorCode = colorCode + randomNumber.toString(16);
 
-let colors = [" #DC8FE5 ", " #F57B8F ", " #7B95FF ", " #F7AED4 ", " #B3DFB5 "];
+	randomNumber = Math.floor(Math.random() * 16);
+	colorCode = colorCode + randomNumber.toString(16);
 
-// Function to randomly choose colors 
+	randomNumber = Math.floor(Math.random() * 16);
+	colorCode = colorCode + randomNumber.toString(16);
 
-function getRandomColor () {
-  var randomNumber = Math.floor(Math.random() * quotes.length);
-  return colors [randomNumber];
+	randomNumber = Math.floor(Math.random() * 16);
+	colorCode = colorCode + randomNumber.toString(16);
 
-}
+	randomNumber = Math.floor(Math.random() * 16);
+	colorCode = colorCode + randomNumber.toString(16);
+
+	randomNumber = Math.floor(Math.random() * 16);
+	colorCode = colorCode + randomNumber.toString(16);
+
+	console.log(colorCode);
+
+// Random color for background
+document.body.style.backgroundColor = colorCode
 
 //Function that will change quotes every 10 seconds //
-let timer;
 
-function quoteTimer() {
-  clearInterval(timer);
-  timer = window.setInterval(printQuote, 15000);
+setInterval("printQuote()", 10000);
 }
-
-function randomBackgroundColor() {
-  let newBackground = randomColor();
-
-  // Function to disply new quote when button is pressed //
-
-  function printWuote () {
-let html = "";
-let RandomQuote = getrandomQuote();
-
-// Function to get random colors and set the timer for quotes 
-
-randomBackgroundColor();
-  quoteTimer();
-  html += '<p class="quote">' + randomQuote.quote + "</p>";
-  html += '<p class="source">' + randomQuote.source;
-  if (randomQuote.citation) {
-    html += '<span class="citation">' + randomQuote.citation + "</span>";
-  }
-  if (randomQuote.year) {
-    html += '<span class="year">' + randomQuote.year + "</span>";
-  }
-  html += "</p>";
 
  // Code for quote box 
 {
   let quoteDiv = document.getElementById("quote-box");
   quoteDiv.innerHTML = html;
-  return quoteDiv;
+  return quoteDiv
   }
 
-// Code //
 
 /***
  Do not make any changes to the line of code below this
