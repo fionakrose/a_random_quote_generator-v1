@@ -1,6 +1,7 @@
 
 // These are my quotes put into an array //
 
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 
 
 
@@ -35,116 +36,105 @@ var quotes = [
     year: "1993", 
     tags: ["Hope", "Politics"]
   }
-  ];
+ 
+];
 
+console.log(quotes);
 
-  // Console log 
+function getRandomQuote() {
+	// generates random number 
+	let randomNumber = Math.floor(Math.random() * quotes.length);
+	// return the object in quotes 
+	return quotes[randomNumber];
+}
 
+console.log(getRandomQuote());
 
-  console.log(quotes);
-
-
-// Create function getRandomQuote
-
-  function getRandomQuote() {
+function printQuote() {
+	let objectQuote = getRandomQuote();
+  let htmlQuote = '';
   
-    let randomNumber = Math.floor(Math.random() * quotes.length);
-    // return the object in quotes at position randomNumber
-    return quotes[randomNumber];
+
+
+
+	// html tags with object properties
+	htmlQuote = htmlQuote + '<p class="quote">' + objectQuote.quote + '</p>';
+  htmlQuote = htmlQuote + '<p class="source">' + objectQuote.source;
+  
+
+
+	//if statement that checks for the existence of a citation tag
+	if (objectQuote.hasCitation) {
+		htmlQuote = htmlQuote + '<span class="citation">' + objectQuote.citation + '</span>';
   }
-    
   
-// Print quote functions & if statements
-
-  console.log(getRandomQuote());
 
 
-  function printQuote() {
-          let randomQuote = getRandomQuote();
-         let htmlQuote = '';
-    htmlQuote = htmlQuote + '<p class="quote">' + randomQuote.quote + "</p>";
-    htmlQuote = htmlQuote + '<p class="source">' + randomQuote.source;
+	//if statement that checks for the existence of the year tag
+	if (objectQuote.hasYear) {
+		htmlQuote = htmlQuote + '<span class="year">' + objectQuote.year + '</span>';
+  }
+  
 
-    // If statement that checks for existince of a citation tag
-    if (randomQuote.citation) {
-      htmlQuote = htmlQuote + '<span class="citation">' + randomQuote.citation + "</span>";
-    }
 
-    // If statemenmt that checks for existence of year tag 
-    if (randomQuote.year) {
-      htmlQuote = htmlQuote + '<span class="year">' + randomQuote.year + "</span>";
-    }
-    //close source p tag
-	htmlQuote = htmlQuote + '</p>'
-    }
+	//close source p tag
+  htmlQuote = htmlQuote + '</p>';
+  
 
-  // Another if statement that checks for existence of tags
-	if (randomQuote.hasTags) {
-		htmlQuote = htmlQuote + '<p class="tags">Tags: ' + randomQuote.tags + '</p>';
+
+
+	//if statement that will check for the existence of tags
+	if (objQuote.hasTags) {
+		htmlQuote = htmlQuote + '<p class="tags">Tags: ' + objQuote.tags + '</p>';
 	}
 
-	htmlQuote = htmlQuote + '<p class="medium">From a ' + randomQuote.medium + '</p>';
+	htmlQuote = htmlQuote + '<p class="medium">From a ' + objQuote.medium + '</p>';
 
   document.getElementById("quote-box").innerHTML = htmlQuote;
   
 
-// Print Quote function //
 
-function printQuote() {
-  let html = "";
-  let RandomQuote = getrandomQuote();
 
-  //This gets the paragraph tag from the html doc
+	//color is represented as 6 digit number so this code will generate six random numbers between 0 and 10 and make random colors
 
-  const quote = document.querySelector(".quote");
-  
 
-//Randomlygenerated color codes - Color codes will be randomly generated 0-15
 
-let colorCode = '#';
+  let colorCode = '#';
 
-let randomNumber = Math.floor(Math.random() * 16);
+	let randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
-	colorCode = colorCode + randomNumber.toString(16);
+	randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
-	randomNumber = Math.floor(Math.random() * 16);
-	colorCode = colorCode + randomNumber.toString(16);
+	randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
-	randomNumber = Math.floor(Math.random() * 16);
-	colorCode = colorCode + randomNumber.toString(16);
+	randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
-	randomNumber = Math.floor(Math.random() * 16);
-	colorCode = colorCode + randomNumber.toString(16);
+	randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
-	randomNumber = Math.floor(Math.random() * 16);
-	colorCode = colorCode + randomNumber.toString(16);
-
-	randomNumber = Math.floor(Math.random() * 16);
-	colorCode = colorCode + randomNumber.toString(16);
+	randomNumber = Math.floor(Math.random() * 10);
+	colorCode = colorCode + randomNumber.toString(10);
 
 	console.log(colorCode);
 
-// Random color for background
-document.body.style.backgroundColor = colorCode
+	// this code will assign random color the page's background 
+	document.body.style.backgroundColor = colorCode;
 
-//Function that will change quotes every 10 seconds //
-
-setInterval("printQuote()", 10000);
 }
 
- // Code for quote box 
-{
-  let quoteDiv = document.getElementById("quote-box");
-  quoteDiv.innerHTML = html;
-  return quoteDiv
-  }
+// this code will change the code every 15 seconds = 15000 milliseconds
+setInterval("printQuote()", 15000);
 
-
+ 
 /***
  Do not make any changes to the line of code below this
   comment.
 ***/
 
 document
-  .getElementById("loadQuote")
-  .addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
