@@ -1,11 +1,7 @@
 
 // These are my quotes put into an array //
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-
-
-
-var quotes = [
+let quotes = [
   {
     quote: "Don't cry because it's over smile because it happened." ,
     source: "Dr Seuss",
@@ -36,6 +32,7 @@ var quotes = [
     year: "1993", 
     tags: ["Hope", "Politics"]
   }
+  
  
 ];
 
@@ -43,54 +40,44 @@ console.log(quotes);
 
 function getRandomQuote() {
 	// generates random number 
-	let randomNumber = Math.floor(Math.random() * quotes.length);
+  let random = Math.floor(Math.random() * quotes.length);
+  let randomQuote = quotes[random];
 	// return the object in quotes 
-	return quotes[randomNumber];
+	return randomQuote;
 }
 
-console.log(getRandomQuote());
+
 
 function printQuote() {
-	let objectQuote = getRandomQuote();
-  let htmlQuote = '';
-  
+	let quote = getRandomQuote();
+  let message = '';
+
+//The message is made using HTML classes for the paragraphs 
+message += '<p class="quote">' + quote.quote + '</p>';
+message += '<p class="source">'+ quote.source;
 
 
+// If the tags 'citation' and 'year' are used then they are added to the message
 
-	// html tags with object properties
-	htmlQuote = htmlQuote + '<p class="quote">' + objectQuote.quote + '</p>';
-  htmlQuote = htmlQuote + '<p class="source">' + objectQuote.source;
-  
-
-
-	//if statement that checks for the existence of a citation tag
-	if (objectQuote.hasCitation) {
-		htmlQuote = htmlQuote + '<span class="citation">' + objectQuote.citation + '</span>';
+if(quote.citation !== undefined){ 
+  message += '<span class="citation">' + quote.citation + '</span>';
   }
-  
-
-
-	//if statement that checks for the existence of the year tag
-	if (objectQuote.hasYear) {
-		htmlQuote = htmlQuote + '<span class="year">' + objectQuote.year + '</span>';
-  }
-  
-
-
-	//close source p tag
-  htmlQuote = htmlQuote + '</p>';
-  
+if (quote.year !== undefined) {
+  message += '<span class="year">' + quote.year + '</span>';
+  } 
+message += '</p>';
 
 
 
-	//if statement that will check for the existence of tags
-	if (objQuote.hasTags) {
-		htmlQuote = htmlQuote + '<p class="tags">Tags: ' + objQuote.tags + '</p>';
-	}
 
-	htmlQuote = htmlQuote + '<p class="medium">From a ' + objQuote.medium + '</p>';
+// This is the function to write the content of the message variable inside 'quote-box'
+function printQuote() {
+  let div = document.getElementById('quote-box');
+  div.innerHTML = message;
+  return(message);
+}
 
-  document.getElementById("quote-box").innerHTML = htmlQuote;
+printQuote();
   
 
 
@@ -126,8 +113,8 @@ function printQuote() {
 
 }
 
-// this code will change the code every 15 seconds = 15000 milliseconds
-setInterval("printQuote()", 15000);
+// this code will change the code every 8 seconds = 8000 milliseconds
+setInterval("printQuote()", 8000);
 
  
 /***
